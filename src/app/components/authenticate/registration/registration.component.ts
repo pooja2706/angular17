@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -22,7 +24,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-  localhost: string= 'http://localhost:8080/'
+  // localhost: string= 'http://localhost:8080/'
+
   onFocus: string='';
     registerForm = new FormGroup({
     username:     new FormControl(''),
@@ -30,36 +33,51 @@ export class RegistrationComponent {
     role:         new FormControl(''),
     password:     new FormControl('')
   });
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
+  }
+  auth=getAuth()
+
+  // create(){
+  //   return this.http.post((this.localhost+'api/auth/signup'), this.registerForm.value)
+  // }
+  signup(){
+    const username=this.registerForm.controls['email'].value||'';
+    const password=this.registerForm.controls['password'].value||'';
+    console.log(this.auth)
+    console.log(username+''+password+'')
+    createUserWithEmailAndPassword(this.auth, username, password).then((usercredential)=>{
+      console.log(usercredential.user.getIdTokenResult)
+      console.log(usercredential.providerId)
+      console.log(usercredential.user.uid)
+      this.router.navigateByUrl('username')
+    }).catch((err)=>{
+      console.log(err)
+    })
   }
 
-  create(){
-    return this.http.post((this.localhost+'api/auth/signup'), this.registerForm.value)
-  }
+  // sendForm() {
+  //   console.log(this.registerForm.value);
+    // this.create().subscribe({
+    //   next: (res)=>
+    //   {
+    //   console.log(res)
+    //   },
+    //   error: (err)=>{
+    //     if(err.error.message=="Failed! Username is already in use!"){
+    //       console.warn("Failed! Username is already in use!");
+    //     }
+    //     else if(err.error.message=="Failed! Email is already in use!"){
+    //       console.warn("Failed! Username is already in use!");
 
-  sendForm() {
-    console.log(this.registerForm.value);
-    this.create().subscribe({
-      next: (res)=>
-      {
-      console.log(res)
-      },
-      error: (err)=>{
-        if(err.error.message=="Failed! Username is already in use!"){
-          console.warn("Failed! Username is already in use!");
-        }
-        else if(err.error.message=="Failed! Email is already in use!"){
-          console.warn("Failed! Username is already in use!");
+    //     }
+    //     else{
+    //       console.log(err.error.message)
+    //     }
 
-        }
-        else{
-          console.log(err.error.message)
-        }
-
-      }
-    },
-    )
-  }
+    //   }
+    // },
+    // )
+  // }
 
 
 }

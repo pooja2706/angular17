@@ -1,0 +1,155 @@
+.logoff{
+  float: right
+}
+.welcomebar{
+  background-color: darkkhaki;
+  margin: 20px 30px 50px 20px;
+}
+
+.add{
+  /* background-color: firebrick; */
+  margin: 20px;
+
+  /* color: aqua; */
+}
+
+.bg-cover {
+  background-size: cover !important;
+}
+app-username{
+  background-color: aqua;
+  border-radius: 10px;
+}
+
+.username{
+  /* background-color: antiquewhite; */
+  display: flex;
+  padding: 20px;
+
+  justify-content: center;
+
+  /* align-self: center; */
+}
+
+mat-card-header{
+  /* align-content: center; */
+  width: 100%;
+  /* background-color: aqua; */
+  overflow: hidden;
+  align-self: center;
+  /* padding: 20px; */
+}
+mat-card-actions{
+  margin: auto;
+  width: fit-content;
+  align-self:center;
+  /* background-color: aliceblue; */
+}
+button{
+  background-color: aliceblue;
+  margin: 5px;
+}
+
+
+.headertext{
+  align-self: center;
+  text-align: center;
+  /* align-items: center; */
+  margin: auto;
+  width: 90%;
+  overflow: hidden;
+  background-color: brown;
+}
+
+mat-card-title{
+  margin: auto;
+
+  width: 80%;
+  /* background-color: aquamarine; */
+}
+mat-card-subtitle{
+  width: 80%;
+  /* text-size-adjust: 50%; */
+
+  /* background-color: rebeccapurple; */
+  margin: auto;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+mat-card{
+  width: 50%;
+  background-color: antiquewhite;
+  overflow: hidden;
+  margin: auto;
+  /* position: relative;; */
+  align-self: center;
+  margin-bottom: 10px;
+  /* display: grid; */
+  /* text-overflow: "*"; */
+
+}
+
+
+/* .cards{
+  background-color: rgb(188, 247, 247);
+  padding: 10px;
+} */
+
+body{
+  /* display: contents; */
+  align-content: center;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  /* background-color: rgb(20, 67, 108); */
+  margin: auto;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  /* width: fit-content; */
+}
+
+.formfield{
+  align-self: center;
+  /* background-color: blue; */
+  margin: auto;
+  /* border-radius: 20px; */
+}
+
+/* mat-form-field{
+  /* align-self: center;
+  align-items: baseline;
+  margin: auto; */
+  /* border-radius: 20px; */
+  /* background-color: aqua;*/
+/* } */
+.searchbar{
+  align-self: center;
+  margin: auto;
+  /* border-radius: 20px; */
+  /* background-color: aqua; */
+  /* width: 70%; */
+}
+/* .demo{
+  border-radius: 20px;
+  background-color: rgb(60, 20, 106);
+} */
+
+/* ::ng-deep .mat-form-field .mat-input-element {
+  background-color: rgb(150, 13, 13);
+} */
+.search2{
+  /* background-color: aliceblue; */
+  display: flex;
+  margin-bottom: 20px;
+}
+.input2{
+  align-self: center;
+  margin: auto;
+  width: 40%;
+  border-radius: 20px;
+  height: 20px;
+}

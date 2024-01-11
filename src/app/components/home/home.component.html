@@ -1,3 +1,62 @@
-<button (click)="logout()">
-  signout
-</button>
+<head style="display: none;"></head>
+<body >
+<div class="welcomebar">
+  <div>
+  Welcome {{username}}
+  </div>
+  <div class="logoff" >
+    <button (click)="logout()" mat-raised-button>
+      signout
+    </button>
+  </div>
+</div>
+
+<div>
+  <button class="add" mat-raised-button color="primary" (click)="createNewDialog()">+Add</button>
+</div>
+
+<form [formGroup]="search">
+  <div  class="formfield">
+    <mat-form-field>
+      <!-- <div class="demo"> -->
+        <input matInput placeholder='search' formControlName="keyword" class="searchbar">
+      <!-- </div> -->
+    </mat-form-field>
+  </div>
+
+</form>
+<div class="search2">
+  <input placeholder="Search" class="input2">
+</div>
+
+
+  <div *ngFor="let data of diarydata"  class="cards">
+    <!-- <li > -->
+      <mat-card *ngIf = "(data.name).includes(search.controls['keyword'].value)">
+        <mat-card-header>
+          <!-- <div></div> -->
+          <div class="headertext">
+            <mat-card-title>
+              {{data.name}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{data.date}}
+            </mat-card-subtitle>
+          </div>
+
+        </mat-card-header>
+
+        <mat-card-actions>
+          <button mat-button routerLink="details/{{data.id}}">Details</button>
+          <button mat-button mat>
+            <mat-icon  fontIcon="edit"></mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    <!-- </li> -->
+  </div>
+
+<div class="username">
+<!-- <app-select-username></app-select-username> -->
+</div>
+</body>

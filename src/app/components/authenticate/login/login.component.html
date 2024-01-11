@@ -1,15 +1,15 @@
 <p>login works!</p>
 <form [formGroup]="loginForm">
   <mat-form-field>
-    <mat-label>Username</mat-label>
-    <input matInput formControlName="username">
+    <mat-label>E-mail id</mat-label>
+    <input matInput formControlName="email" >
   </mat-form-field>
 
     <!-- <mat-hint *ngIf="onFocus=='role'">hint</mat-hint> -->
 
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput formControlName="password">
+    <input matInput formControlName="password" value="123456">
   </mat-form-field>
   <button mat-raised-button (click)="login()">Sign In</button>
   <textarea placeholder="state"></textarea>

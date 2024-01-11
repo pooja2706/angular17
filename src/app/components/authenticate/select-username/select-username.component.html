@@ -1,0 +1,21 @@
+<!-- <p>select-username works!</p> -->
+<!-- <label></label> -->
+<div class="username" >
+<form [formGroup]="form" >
+
+    <div>
+      <mat-form-field>
+        <mat-label>
+          Username
+        </mat-label>
+        <input matInput type="text" (keyup)="keyup()" formControlName="username" >
+      </mat-form-field>
+    </div>
+
+    <!-- <div> -->
+      <button class="bu" (click)="saveUsername()" mat-raised-button>Save in Database</button>
+    <!-- </div> -->
+
+</form>
+</div>
+

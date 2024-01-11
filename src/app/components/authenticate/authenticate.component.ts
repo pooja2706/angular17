@@ -9,17 +9,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     MatButtonModule,
     RouterModule,
-    HttpClientModule
   ],
   templateUrl: './authenticate.component.html',
   styleUrl: './authenticate.component.css'
 })
 export class AuthenticateComponent {
-  localhost: string='https://localhost:8080/'
-  constructor(private http: HttpClient){
-
-  }
-  // getall(){
-  //   return this.http.get((this.localhost+'api/test/all'))
-  // }
 }

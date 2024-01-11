@@ -1,27 +1,27 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
+import { FirebaseSignInProvider } from '@firebase/util';
+import { FirebaseOptions } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { IS_LOGGED_IN } from '../../../../environment/constants';
+import { LoginService } from '../../../services/login.service';
 
+// import * as data from
 class obj{
-  id: string
-  username: string
   email: string
   password: string
 
   constructor(
-    id: string,
-    username: string,
     email: string,
-    passwrod: string
+    password: string
   ){
-    this.id=id;
-    this.username=username;
     this.email=email;
-    this.password=passwrod
+    this.password=password
   }
 }
 @Component({
@@ -33,7 +33,7 @@ class obj{
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -41,31 +41,41 @@ class obj{
 export class LoginComponent {
   localhost: string='http://localhost:8080/'
   state=false;
-  constructor(private http: HttpClient, private router: Router){
+
+
+
+
+  constructor(private http: HttpClient, private router: Router, private Login: LoginService){
+
+
     // if(localStorage.getItem('loggedIn')){
     //   this.router.navigateByUrl('')
     // }
     // console.log('dhjfhkjds')
     // if(this.localhost.getItem)
   }
+  auth=getAuth()
+
 
   loginForm=new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+    email: new FormControl('p@gmail.com'),
+    password: new FormControl('123456')
+
   })
   signin(){
-    return this.http.post<obj>((this.localhost+'api/auth/signin'), this.loginForm.value)
+    // return this.http.post<obj>((this.localhost+'api/auth/signin'), this.loginForm.value)
   }
-  login(){
-    this.signin().subscribe(
-      {
-        next: (res: obj)=>{
-          localStorage.setItem('loggedIn', res.id)
-          console.log(localStorage.getItem('loggedIn'))
-          this.router.navigateByUrl('')
 
-        }
-      }
-    )
+  login(){
+    this.Login.loginWithEmailAndPassWord(this.loginForm.controls['email'].value || '', this.loginForm.controls['password'].value||'').then((res)=>{
+      // this.Login.setToken(''+res.user.uid+'')
+      console.log('Login Successful')
+      console.log(res.user.uid)
+      this.router.navigateByUrl('')
+      // .then((r)=>{
+      //   console.log(r)
+      // })
+    })
   }
+
 }
